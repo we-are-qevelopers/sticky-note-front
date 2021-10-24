@@ -35,18 +35,5 @@ module.exports = {
     'import/order': ['error'],
     'import/no-unresolved': 'off',
     'no-param-reassign': 'off',
-    'prettier/prettier': [
-      'error',
-      {
-        tabWidth: 2,
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-        quoteProps: 'as-needed',
-        trailingComma: 'all',
-        bracketSpacing: true,
-        arrowParens: 'avoid',
-      },
-    ],
   },
 };
