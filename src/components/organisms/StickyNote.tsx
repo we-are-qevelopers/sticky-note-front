@@ -5,6 +5,7 @@ import { colors } from '../../styles/variables';
 import { ReactRndWindowOption } from '../../types/reactRndWindow';
 import { useRndLayoutProvider } from '../../hooks/reactRnd';
 import ReactRndWindow from './ReactRndWindow';
+import 'draft-js/dist/Draft.css';
 
 type Props = {
   options: ReactRndWindowOption;
