@@ -8,7 +8,12 @@ const App: React.VFC = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* NOTE: chafSetはdraft.jsを使うときにはcharSet={'utf-8'} が必要らしい？ (https://draftjs.org/docs/getting-started)*/}
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1"
+          charSet={'utf-8'}
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap"
