@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Editor, EditorState, RichUtils, DraftEditorCommand } from 'draft-js';
 import { colors } from '../../styles/variables';
 import { ReactRndWindowOption } from '../../types/reactRndWindow';
 import ReactRndWindow from './ReactRndWindow';
-import 'draft-js/dist/Draft.css';
-
-// This is experimental implementation.
-// TODO: improve
 
 type Props = {
-  children?: React.ReactNode;
   options: ReactRndWindowOption;
 };
 
@@ -18,7 +13,7 @@ const Root = styled(ReactRndWindow)`
   border: 1px solid ${colors.borderBlack};
 `;
 
-const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
+const StickyNote: React.VFC<Props> = ({ options }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const handleKeyCommand = (command: DraftEditorCommand) => {
@@ -30,11 +25,23 @@ const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
     return 'not-handled';
   };
 
+  const onResizeStop = (e: MouseEvent) => {
+    console.log(e);
+  };
+
+  const onDragStop = (e: MouseEvent) => {
+    console.log(e);
+  };
+
   if (process.browser === false) {
     return null;
   }
   return (
-    <Root options={options}>
+    <Root
+      options={options}
+      onResizeStop={e => onResizeStop(e)}
+      onDragStop={e => onDragStop(e)}
+    >
       <Editor
         editorState={editorState}
         onChange={setEditorState}
@@ -44,4 +51,4 @@ const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
   );
 };
 
-export default ExampleStickyNote;
+export default StickyNote;

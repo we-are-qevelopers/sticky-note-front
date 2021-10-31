@@ -8,11 +8,19 @@ type Props = {
   className?: string;
   children?: React.ReactNode;
   options: ReactRndWindowOption;
+  onResizeStop?: (e: MouseEvent) => void;
+  onDragStop?: (e: MouseEvent) => void;
 };
 
 const Root = styled(Rnd)``;
 
-const ReactRndWindow: React.VFC<Props> = ({ children, options, className }) => {
+const ReactRndWindow: React.VFC<Props> = ({
+  children,
+  options,
+  className,
+  onResizeStop,
+  onDragStop,
+}) => {
   return (
     <Root
       className={classes(className)}
@@ -25,6 +33,8 @@ const ReactRndWindow: React.VFC<Props> = ({ children, options, className }) => {
       minWidth={options.minimumSize.x}
       minHeight={options.minimumSize.y}
       bounds="parent"
+      onResizeStop={onResizeStop}
+      onDragStop={onDragStop}
     >
       {children}
     </Root>
