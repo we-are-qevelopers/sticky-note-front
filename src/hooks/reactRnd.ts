@@ -3,7 +3,7 @@ import { Matrix } from '../types';
 import { ReactRndWindowOption } from '../types/reactRndWindow';
 import { isAvailableWindow } from '../utils/window';
 
-export const useRndLayoutProvider = (options: ReactRndWindowOption) => {
+export const useReactRndLayoutProvider = (options: ReactRndWindowOption) => {
   const [size, setSize] = useState<Matrix>({
     x: options.initialSize.x,
     y: options.initialSize.y,
@@ -65,6 +65,9 @@ export const useRndLayoutProvider = (options: ReactRndWindowOption) => {
   };
 
   const onResizeStop = (e: MouseEvent) => {
+    const innerWidth = isAvailableWindow ? window.innerWidth : 0;
+    const innerHeight = isAvailableWindow ? window.innerHeight : 0;
+
     const movement: Matrix = {
       x: e.pageX - mousedownPosition.x,
       y: e.pageY - mousedownPosition.y,

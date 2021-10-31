@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Editor, EditorState, RichUtils, DraftEditorCommand } from 'draft-js';
 import { colors } from '../../styles/variables';
 import { ReactRndWindowOption } from '../../types/reactRndWindow';
-import { useRndLayoutProvider } from '../../hooks/reactRnd';
+import { useReactRndLayoutProvider } from '../../hooks/reactRnd';
 import ReactRndWindow from './ReactRndWindow';
 import 'draft-js/dist/Draft.css';
 
@@ -16,7 +16,7 @@ const Root = styled(ReactRndWindow)`
 `;
 
 const StickyNote: React.VFC<Props> = ({ options }) => {
-  const rndLayoutProvider = useRndLayoutProvider(options);
+  const reactRndLayoutProvider = useReactRndLayoutProvider(options);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const handleKeyCommand = (command: DraftEditorCommand) => {
@@ -34,12 +34,12 @@ const StickyNote: React.VFC<Props> = ({ options }) => {
   return (
     <Root
       options={options}
-      size={rndLayoutProvider.size}
-      position={rndLayoutProvider.position}
-      onResizeStart={e => rndLayoutProvider.onResizeStart(e)}
-      onResizeStop={e => rndLayoutProvider.onResizeStop(e)}
-      onDragStart={e => rndLayoutProvider.onDragStart(e)}
-      onDragStop={e => rndLayoutProvider.onDragStop(e)}
+      size={reactRndLayoutProvider.size}
+      position={reactRndLayoutProvider.position}
+      onResizeStart={e => reactRndLayoutProvider.onResizeStart(e)}
+      onResizeStop={e => reactRndLayoutProvider.onResizeStop(e)}
+      onDragStart={e => reactRndLayoutProvider.onDragStart(e)}
+      onDragStop={e => reactRndLayoutProvider.onDragStop(e)}
     >
       <Editor
         editorState={editorState}
