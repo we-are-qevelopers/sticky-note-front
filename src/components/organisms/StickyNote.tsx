@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import { Editor, EditorState, RichUtils, DraftEditorCommand } from 'draft-js';
 import { colors } from '../../styles/variables';
 import { ReactRndWindowOption } from '../../types/reactRndWindow';
+import { useRndLayoutProvider } from '../../hooks/reactRnd';
 import ReactRndWindow from './ReactRndWindow';
 import 'draft-js/dist/Draft.css';
 
-// This is experimental implementation.
-// TODO: improve
-
 type Props = {
-  children?: React.ReactNode;
   options: ReactRndWindowOption;
 };
 
@@ -18,7 +15,8 @@ const Root = styled(ReactRndWindow)`
   border: 1px solid ${colors.borderBlack};
 `;
 
-const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
+const StickyNote: React.VFC<Props> = ({ options }) => {
+  const rndLayoutProvider = useRndLayoutProvider(options);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
   const handleKeyCommand = (command: DraftEditorCommand) => {
@@ -34,7 +32,15 @@ const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
     return null;
   }
   return (
-    <Root options={options}>
+    <Root
+      options={options}
+      size={rndLayoutProvider.size}
+      position={rndLayoutProvider.position}
+      onResizeStart={e => rndLayoutProvider.onResizeStart(e)}
+      onResizeStop={e => rndLayoutProvider.onResizeStop(e)}
+      onDragStart={e => rndLayoutProvider.onDragStart(e)}
+      onDragStop={e => rndLayoutProvider.onDragStop(e)}
+    >
       <Editor
         editorState={editorState}
         onChange={setEditorState}
@@ -44,4 +50,4 @@ const ExampleStickyNote: React.VFC<Props> = ({ options, children }) => {
   );
 };
 
-export default ExampleStickyNote;
+export default StickyNote;

@@ -34,4 +34,4 @@ export const reactRnd = {
   ReactRnd: {
     borderRadius: '0.5rem',
   },
-};
+} as const;
