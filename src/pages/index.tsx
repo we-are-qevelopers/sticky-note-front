@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { fetchNotesMockApiClient } from 'src/api/mocks/note';
+import { notesState } from 'src/recoil/atoms/note';
 import { Note } from 'src/types/note';
 import IndexTemplate from '../components/templates';
 
@@ -9,7 +11,12 @@ type ServerSideProps = {
 };
 
 const IndexPage: NextPage<ServerSideProps> = ({ notes }) => {
-  return <IndexTemplate notes={notes} />;
+  const setNotes = useSetRecoilState(notesState);
+  useEffect(() => {
+    setNotes(notes);
+  }, [notes]);
+
+  return <IndexTemplate />;
 };
 
 export const getServerSideProps = async () => {

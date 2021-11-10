@@ -1,19 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useMemo, useState } from 'react';
+import { useRecoilValue } from 'recoil';
 import { notesState } from 'src/recoil/atoms/note';
-import { Matrix, Vertex } from 'src/types';
-import { Note } from 'src/types/note';
+import { Matrix } from 'src/types';
 import { isAvailableWindow } from 'src/utils/window';
-
-export const useNotesViewModel = (state: Note[]) => {
-  const [notes, setNotes] = useRecoilState(notesState);
-
-  useEffect(() => {
-    setNotes(state);
-  }, [state]);
-
-  return { notes };
-};
 
 export const useNoteViewModel = (id: number) => {
   const notes = useRecoilValue(notesState);
@@ -28,23 +17,23 @@ export const useNoteViewModel = (id: number) => {
     null,
   );
 
-  const vertex = useMemo<Vertex>(() => {
-    return {
-      topLeft: position,
-      topRight: {
-        x: position.x + size.x,
-        y: position.y,
-      },
-      bottomLeft: {
-        x: position.x,
-        y: position.y + size.y,
-      },
-      bottomRight: {
-        x: position.x + size.x,
-        y: position.y + size.y,
-      },
-    };
-  }, [size, position]);
+  // const vertex = useMemo<Vertex>(() => {
+  //   return {
+  //     topLeft: position,
+  //     topRight: {
+  //       x: position.x + size.x,
+  //       y: position.y,
+  //     },
+  //     bottomLeft: {
+  //       x: position.x,
+  //       y: position.y + size.y,
+  //     },
+  //     bottomRight: {
+  //       x: position.x + size.x,
+  //       y: position.y + size.y,
+  //     },
+  //   };
+  // }, [size, position]);
 
   const onDragStart = (e: MouseEvent) => {
     setMousedownPosition({

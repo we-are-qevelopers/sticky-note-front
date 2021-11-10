@@ -1,19 +1,15 @@
 import React from 'react';
-import { useNotesViewModel } from 'src/hooks/note';
-import { Note } from 'src/types/note';
+import { useRecoilValue } from 'recoil';
+import { notesState } from 'src/recoil/atoms/note';
 import StickyNotesRndArea from '../organisms/StickyNotesRndArea';
 import BaseTemplate from './base';
 
-type Props = {
-  notes: Note[];
-};
-
-const IndexTemplate: React.VFC<Props> = ({ notes }) => {
-  const notesViewModel = useNotesViewModel(notes);
+const IndexTemplate: React.VFC = () => {
+  const notes = useRecoilValue(notesState);
 
   return (
     <BaseTemplate>
-      <StickyNotesRndArea notes={notesViewModel.notes} />
+      <StickyNotesRndArea notes={notes} />
     </BaseTemplate>
   );
 };
