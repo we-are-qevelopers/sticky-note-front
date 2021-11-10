@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Matrix } from '../types';
-import { ReactRndWindowOption } from '../types/reactRndWindow';
 import { isAvailableWindow } from '../utils/window';
 
-export const useReactRndLayoutProvider = (options: ReactRndWindowOption) => {
+export const useReactRndLayoutProvider = (
+  initialSize: Matrix,
+  initialPosition: Matrix,
+) => {
   const [size, setSize] = useState<Matrix>({
-    x: options.initialSize.x,
-    y: options.initialSize.y,
+    x: initialSize.x,
+    y: initialSize.y,
   });
   const [position, setPosition] = useState<Matrix>({
-    x: options.initialPosition.x,
-    y: options.initialPosition.y,
+    x: initialPosition.x,
+    y: initialPosition.y,
   });
   const [mousedownPosition, setMousedownPosition] = useState<Matrix | null>(
     null,

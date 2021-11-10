@@ -19,7 +19,7 @@ const dummyNotes: Note[] = [
   },
   {
     id: 2,
-    content: 'hoge',
+    content: 'piyo',
     position: { x: 480, y: 240 },
     size: { x: 480, y: 240 },
     createdAt: '2021/11/10 15:55',

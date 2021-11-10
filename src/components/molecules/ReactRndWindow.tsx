@@ -1,15 +1,14 @@
 import React from 'react';
 import { Rnd } from 'react-rnd';
+import { Matrix } from 'src/types';
+import { classes } from 'src/utils/classes';
 import styled from 'styled-components';
-import { Matrix } from '../../types';
-import { ReactRndWindowOption } from '../../types/reactRndWindow';
-import { classes } from '../../utils/classes';
 
 type Props = {
   className?: string;
   children?: React.ReactNode;
-  options: ReactRndWindowOption;
   size: Matrix;
+  minimumSize: Matrix;
   position: Matrix;
   onResizeStart: (e: MouseEvent) => void;
   onResizeStop: (e: MouseEvent) => void;
@@ -21,28 +20,28 @@ const Root = styled(Rnd)``;
 
 const ReactRndWindow: React.VFC<Props> = ({
   children,
-  options,
   className,
   size,
+  minimumSize,
   position,
-  onResizeStart,
-  onResizeStop,
   onDragStart,
   onDragStop,
+  onResizeStart,
+  onResizeStop,
 }) => {
   return (
     <Root
       className={classes(className)}
       default={{
-        x: options.initialPosition.x,
-        y: options.initialPosition.y,
-        width: options.initialSize.x,
-        height: options.initialSize.y,
+        x: position.x,
+        y: position.y,
+        width: size.x,
+        height: size.y,
       }}
-      size={size}
+      size={{ width: size.x, height: size.y }}
       position={position}
-      minWidth={options.minimumSize.x}
-      minHeight={options.minimumSize.y}
+      minWidth={minimumSize.x}
+      minHeight={minimumSize.y}
       bounds="parent"
       onResizeStart={onResizeStart}
       onResizeStop={onResizeStop}
