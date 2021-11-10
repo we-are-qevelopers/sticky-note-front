@@ -8,7 +8,10 @@ type Props = {
   className?: string;
 };
 
-const Root = styled.textarea``;
+const Root = styled.textarea`
+  width: 100%;
+  height: 100%;
+`;
 
 const BasicStickyNoteTextarea: React.VFC<Props> = ({
   value,

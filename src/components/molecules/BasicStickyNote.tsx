@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReactRndLayoutProvider } from 'src/hooks/reactRnd';
+import { useNoteViewModel } from 'src/hooks/note';
 import { Matrix } from 'src/types';
 import { Note } from 'src/types/note';
 import styled from 'styled-components';
@@ -16,25 +16,25 @@ const Root = styled(ReactRndWindow)`
 
 const BasicStickyNote: React.VFC<Props> = ({ note }) => {
   const MINIMUM_SIZE: Matrix = {
-    x: 320,
-    y: 240,
+    x: 128,
+    y: 128,
   };
-  const reactRndLayoutProvider = useReactRndLayoutProvider(
-    note.size,
-    note.position,
-  );
+  const noteViewModel = useNoteViewModel(note.id);
 
   return (
     <Root
-      size={reactRndLayoutProvider.size}
-      position={reactRndLayoutProvider.position}
+      size={noteViewModel.size}
+      position={noteViewModel.position}
       minimumSize={MINIMUM_SIZE}
-      onResizeStart={reactRndLayoutProvider.onResizeStart}
-      onResizeStop={reactRndLayoutProvider.onResizeStop}
-      onDragStart={reactRndLayoutProvider.onDragStart}
-      onDragStop={reactRndLayoutProvider.onDragStop}
+      onResizeStart={noteViewModel.onResizeStart}
+      onResizeStop={noteViewModel.onResizeStop}
+      onDragStart={noteViewModel.onDragStart}
+      onDragStop={noteViewModel.onDragStop}
     >
-      <BasicStickyNoteTextarea value={note.content} onChange={() => {}} />
+      <BasicStickyNoteTextarea
+        value={noteViewModel.content}
+        onChange={noteViewModel.onChangeContent}
+      />
     </Root>
   );
 };

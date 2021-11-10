@@ -29,6 +29,8 @@ const ReactRndWindow: React.VFC<Props> = ({
   onResizeStart,
   onResizeStop,
 }) => {
+  console.log(position);
+
   return (
     <Root
       className={classes(className)}

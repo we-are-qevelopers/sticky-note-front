@@ -7,7 +7,11 @@ type Props = {
   notes: Note[];
 };
 
-const Root = styled.main``;
+const Root = styled.main`
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+`;
 
 const StickyNotesRndArea: React.VFC<Props> = ({ notes }) => {
   return (
