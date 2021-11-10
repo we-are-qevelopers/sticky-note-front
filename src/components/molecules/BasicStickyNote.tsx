@@ -12,6 +12,7 @@ type Props = {
 
 const Root = styled(ReactRndWindow)`
   border: 1px solid black;
+  padding: 8px;
 `;
 
 const BasicStickyNote: React.VFC<Props> = ({ note }) => {
@@ -26,6 +27,16 @@ const BasicStickyNote: React.VFC<Props> = ({ note }) => {
       size={noteViewModel.size}
       position={noteViewModel.position}
       minimumSize={MINIMUM_SIZE}
+      enableResizing={{
+        top: false,
+        right: false,
+        bottom: false,
+        left: false,
+        topLeft: false,
+        topRight: false,
+        bottomLeft: false,
+        bottomRight: true,
+      }}
       onResizeStart={noteViewModel.onResizeStart}
       onResizeStop={noteViewModel.onResizeStop}
       onDragStart={noteViewModel.onDragStart}

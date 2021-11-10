@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { notesState } from 'src/recoil/atoms/note';
-import { Matrix } from 'src/types';
+import { Matrix, Vertex } from 'src/types';
 import { Note } from 'src/types/note';
 import { isAvailableWindow } from 'src/utils/window';
 
@@ -27,6 +27,24 @@ export const useNoteViewModel = (id: number) => {
   const [mousedownPosition, setMousedownPosition] = useState<Matrix | null>(
     null,
   );
+
+  const vertex = useMemo<Vertex>(() => {
+    return {
+      topLeft: position,
+      topRight: {
+        x: position.x + size.x,
+        y: position.y,
+      },
+      bottomLeft: {
+        x: position.x,
+        y: position.y + size.y,
+      },
+      bottomRight: {
+        x: position.x + size.x,
+        y: position.y + size.y,
+      },
+    };
+  }, [size, position]);
 
   const onDragStart = (e: MouseEvent) => {
     setMousedownPosition({
@@ -99,6 +117,7 @@ export const useNoteViewModel = (id: number) => {
 
     setSize(newSize);
   };
+
   const onChangeContent = (value: string) => {
     setContent(value);
   };

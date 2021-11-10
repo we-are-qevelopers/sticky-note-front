@@ -11,6 +11,8 @@ type Props = {
 const Root = styled.textarea`
   width: 100%;
   height: 100%;
+  resize: none;
+  border: none;
 `;
 
 const BasicStickyNoteTextarea: React.VFC<Props> = ({
