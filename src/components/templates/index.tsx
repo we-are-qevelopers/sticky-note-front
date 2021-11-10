@@ -1,13 +1,8 @@
 import React from 'react';
-import { useRecoilValue } from 'recoil';
-import { exampleStringState } from '../../recoil/atoms/examples';
 import StickyNote from '../organisms/StickyNote';
 import BaseTemplate from './base';
 
 const IndexTemplate: React.VFC = () => {
-  const exampleString = useRecoilValue(exampleStringState);
-  console.log(exampleString);
-
   return (
     <BaseTemplate>
       <StickyNote

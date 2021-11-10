@@ -1,6 +1,6 @@
 export const recoilKeys = {
   atoms: {
-    EXAMPLE_STRING: 'EXAMPLE_STRING',
+    NOTES: 'NOTES',
   },
   selectors: {},
 } as const;
